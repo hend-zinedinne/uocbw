@@ -4,7 +4,10 @@ enum moods {
 	CAUTIOUS,
 	AGGRESSIVE,
 	CENTERED,
-	SILLY
+	SILLY,
+	SNEAKY,
+	THINKER,
+	NONE
 }
 
 enum statuses {
@@ -15,9 +18,11 @@ enum statuses {
 	SHOCK,
 	COMBO,
 	TOXIC,
-	HEALING
+	HEALING,
+	NONE
 }
 
+@onready var defeat: AudioStreamPlayer2D = $defeat
 @onready var hit: AudioStreamPlayer2D = $hit
 @onready var bounce: AudioStreamPlayer2D = $bounce
 @onready var hurt: AudioStreamPlayer2D = $hurt

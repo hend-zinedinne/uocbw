@@ -11,9 +11,12 @@ func _ready() -> void:
 	red_meter.value = health_meter.value
 	ability_meter.max_value = ball.meter_max
 
-func _process(delta: float) -> void:
-	if !ball.health <= 0:
+func _process(_delta: float) -> void:
+	if is_instance_valid(ball):
 		ability_meter.value = ball.meter
 		health_number.text = str((int(health_meter.value)))
 		health_meter.value = ball.health
 		red_meter.value = lerp(red_meter.value, health_meter.value, 0.1)
+
+func _on_button_pressed() -> void:
+	ball.death.emit()

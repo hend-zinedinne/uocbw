@@ -1,23 +1,28 @@
 [gd_scene format=3 uid="uid://ck20gv8rmyb0d"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cfp7tibmoh0ts" path="res://assets/tres/standard_ball_physics.tres" id="1_07xfr"]
-[ext_resource type="Texture2D" uid="uid://d3vr2ca0fpxb8" path="res://Sprite-0002.png" id="1_bxcof"]
+[ext_resource type="Texture2D" uid="uid://d3vr2ca0fpxb8" path="res://assets/characters/lancelot/sprites/lancelot-default.png" id="1_bxcof"]
 [ext_resource type="Script" uid="uid://xp8ot661fkvf" path="res://scripts/lancelot.gd" id="1_yle6h"]
-[ext_resource type="Texture2D" uid="uid://cvpaktu7h4r7t" path="res://lute.png" id="3_lpkqs"]
-[ext_resource type="FontFile" uid="uid://cdgsg5g1o58vk" path="res://JetBrainsMono-ExtraBold.ttf" id="4_lpkqs"]
-[ext_resource type="Texture2D" uid="uid://0bnvwo277b44" path="res://lancelot_hurt.png" id="5_tqqdj"]
-[ext_resource type="AudioStream" uid="uid://bj2q0ulxnjwcp" path="res://wep_spell_wind.mp3" id="7_ecexa"]
-[ext_resource type="AudioStream" uid="uid://cxnpohjuepimh" path="res://wep_spell_heal.mp3" id="8_x0b12"]
-[ext_resource type="AudioStream" uid="uid://dfsp770af54p6" path="res://wep_spell_shield.mp3" id="9_vq211"]
-[ext_resource type="AudioStream" uid="uid://c65pkcb52f6ka" path="res://wep_spell_sleep.mp3" id="10_22h5q"]
-[ext_resource type="AudioStream" uid="uid://cdr05mxwbbdea" path="res://wep_spell_bomb.mp3" id="10_ffvh2"]
-[ext_resource type="Texture2D" uid="uid://6uvn4j5irea8" path="res://sleep_aura.png" id="12_ffvh2"]
+[ext_resource type="Texture2D" uid="uid://cvpaktu7h4r7t" path="res://assets/characters/lancelot/sprites/lute.png" id="3_lpkqs"]
+[ext_resource type="FontFile" uid="uid://cdgsg5g1o58vk" path="res://assets/fonts/JetBrainsMono-ExtraBold.ttf" id="4_lpkqs"]
+[ext_resource type="Texture2D" uid="uid://0bnvwo277b44" path="res://assets/characters/lancelot/sprites/lancelot_hurt.png" id="5_tqqdj"]
+[ext_resource type="AudioStream" uid="uid://bj2q0ulxnjwcp" path="res://assets/characters/lancelot/sfx/sfx_spell_wind.mp3" id="7_ecexa"]
+[ext_resource type="Texture2D" uid="uid://bmj2kdasbx7l6" path="res://assets/general/sprites/moods/mood_aggressive.png" id="8_8bv5x"]
+[ext_resource type="Texture2D" uid="uid://b4nxgxnwd5gj1" path="res://assets/characters/lancelot/sprites/spell_barrier.png" id="8_rcxil"]
+[ext_resource type="AudioStream" uid="uid://cxnpohjuepimh" path="res://assets/characters/lancelot/sfx/sfx_spell_heal.mp3" id="8_x0b12"]
+[ext_resource type="Texture2D" uid="uid://n83mnyhjdhbh" path="res://assets/general/sprites/moods/mood_cautious.png" id="9_8y8tb"]
+[ext_resource type="AudioStream" uid="uid://dfsp770af54p6" path="res://assets/characters/lancelot/sfx/sfx_spell_shield.mp3" id="9_vq211"]
+[ext_resource type="AudioStream" uid="uid://c65pkcb52f6ka" path="res://assets/characters/lancelot/sfx/sfx_spell_sleep.mp3" id="10_22h5q"]
+[ext_resource type="AudioStream" uid="uid://cdr05mxwbbdea" path="res://assets/characters/lancelot/sfx/sfx_spell_chord.mp3" id="10_ffvh2"]
+[ext_resource type="Texture2D" uid="uid://cgeq7vhbxaufg" path="res://assets/general/sprites/moods/mood_centered.png" id="10_rcxil"]
+[ext_resource type="Texture2D" uid="uid://c1sap683xot42" path="res://assets/general/sprites/moods/mood_silly.png" id="11_o6637"]
+[ext_resource type="Texture2D" uid="uid://6uvn4j5irea8" path="res://assets/characters/lancelot/sprites/sleep_aura.png" id="12_ffvh2"]
+[ext_resource type="Texture2D" uid="uid://connvcf7v0wu4" path="res://assets/general/sprites/moods/mood_sneaky.png" id="12_o2goh"]
+[ext_resource type="Texture2D" uid="uid://bmasphrs7jv6x" path="res://assets/general/sprites/moods/mood_thinker.png" id="13_ab47u"]
+[ext_resource type="Script" uid="uid://phry5xw5wbki" path="res://scripts/mood_module.gd" id="19_8y8tb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_22h5q"]
 radius = 385.02078
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_km1lq"]
-radius = 32.01562
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gn1st"]
 radius = 15.0
@@ -41,6 +46,12 @@ animations = [{
 "name": &"hurt",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6637"]
+radius = 49.010204
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_km1lq"]
+radius = 32.01562
 
 [sub_resource type="Animation" id="Animation_ecexa"]
 length = 0.001
@@ -80,6 +91,230 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 255)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("lancelot_sprites:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("lancelot_sprites:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:freeze")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:collision_layer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:collision_mask")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("sleep_area:monitoring")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("mood_bubble:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("spell_barrier/Sprite2D:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("spell_barrier:monitoring")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rcxil"]
+resource_name = "barrier"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spell_barrier/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spell_barrier:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ffvh2"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lancelot_sprites:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lancelot_sprites:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.06666668, 0.099999994, 0.13333336, 0.2, 0.26666668, 0.33333334, 0.4, 0.46666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(-45, 0), Vector2(40, 0), Vector2(-35, 0), Vector2(30, 0), Vector2(-25, 0), Vector2(20, 0), Vector2(-15, 0), Vector2(10, 0), Vector2(-5, 0), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:freeze")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:collision_layer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:collision_mask")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_x0b12"]
 resource_name = "flip_weapon"
@@ -109,12 +344,28 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_8bv5x"]
+resource_name = "mood_trigger"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mood_bubble:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_jpf3a"]
 resource_name = "new_animation"
 
 [sub_resource type="Animation" id="Animation_22h5q"]
 resource_name = "sleep_aura"
-length = 0.6
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -122,19 +373,88 @@ tracks/0/path = NodePath("sleep_area/Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1.6817936, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sleep_area:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vq211"]
 _data = {
 &"RESET": SubResource("Animation_ecexa"),
+&"barrier": SubResource("Animation_rcxil"),
+&"death": SubResource("Animation_ffvh2"),
 &"flip_weapon": SubResource("Animation_x0b12"),
+&"mood_trigger": SubResource("Animation_8bv5x"),
 &"new_animation": SubResource("Animation_jpf3a"),
 &"sleep_aura": SubResource("Animation_22h5q")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mj67g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_8y8tb")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_8bv5x")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_rcxil")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_o6637")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_o2goh")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ab47u")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8y8tb"]
+radius = 1084.0005
 
 [node name="lancelot" type="RigidBody2D" unique_id=497550199 groups=["ball", "lancelot"]]
 collision_layer = 7
@@ -148,6 +468,9 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_yle6h")
 
+[node name="mood_module" type="Node2D" parent="." unique_id=1554684708]
+script = ExtResource("19_8y8tb")
+
 [node name="sleep_area" type="Area2D" parent="." unique_id=1843140177]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sleep_area" unique_id=2005933936]
@@ -158,34 +481,53 @@ modulate = Color(1, 1, 1, 255)
 scale = Vector2(6, 6)
 texture = ExtResource("12_ffvh2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118677750 groups=["ball"]]
-shape = SubResource("CircleShape2D_km1lq")
-
 [node name="lute" type="Area2D" parent="." unique_id=1530917075 groups=["weapon"]]
 collision_layer = 2
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lute" unique_id=1232177062 groups=["weapon"]]
-position = Vector2(0, -63)
-shape = SubResource("CapsuleShape2D_gn1st")
 
 [node name="lute_sprite" type="Sprite2D" parent="lute" unique_id=1003906822]
 scale = Vector2(-1, 1.005)
 texture = ExtResource("3_lpkqs")
 offset = Vector2(0, -63)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lute" unique_id=1232177062 groups=["weapon"]]
+position = Vector2(0, -64)
+shape = SubResource("CapsuleShape2D_gn1st")
+
 [node name="lancelot_sprites" type="AnimatedSprite2D" parent="." unique_id=546123918]
 sprite_frames = SubResource("SpriteFrames_yitas")
 animation = &"hurt"
 
+[node name="spell_barrier" type="Area2D" parent="." unique_id=128975129]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spell_barrier" unique_id=692481112]
+shape = SubResource("CircleShape2D_o6637")
+
+[node name="Sprite2D" type="Sprite2D" parent="spell_barrier" unique_id=1468003562]
+texture = ExtResource("8_rcxil")
+
+[node name="Label" type="Label" parent="spell_barrier" unique_id=1161840916]
+offset_left = -20.0
+offset_top = 47.0
+offset_right = 20.0
+offset_bottom = 70.0
+pivot_offset = Vector2(20, 11)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118677750 groups=["ball"]]
+shape = SubResource("CircleShape2D_km1lq")
+
 [node name="health" type="Label" parent="." unique_id=2068259626]
-offset_left = -16.0
+offset_left = -19.0
 offset_top = 22.0
-offset_right = 23.0
+offset_right = 20.0
 offset_bottom = 45.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_lpkqs")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="hurt_timer" type="Timer" parent="." unique_id=1960617534]
 wait_time = 0.25
@@ -201,6 +543,12 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1592473461]
 libraries/ = SubResource("AnimationLibrary_vq211")
+
+[node name="mood_bubble" type="AnimatedSprite2D" parent="." unique_id=1801845889]
+position = Vector2(38.5, -38.5)
+scale = Vector2(0.3984375, 0.3984375)
+sprite_frames = SubResource("SpriteFrames_mj67g")
+animation = &"4"
 
 [node name="spell_sfx" type="Node2D" parent="." unique_id=991220630]
 
@@ -219,10 +567,22 @@ stream = ExtResource("10_ffvh2")
 [node name="sleep_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=836449045]
 stream = ExtResource("10_22h5q")
 
+[node name="enemy_check" type="Area2D" parent="." unique_id=1874610252]
+light_mask = 7
+visibility_layer = 7
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_check" unique_id=1223647262]
+shape = SubResource("CircleShape2D_8y8tb")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
 [connection signal="body_entered" from="." to="." method="_on_lancelot_body_entered"]
+[connection signal="death" from="." to="." method="_on_death"]
 [connection signal="weapon_hit" from="." to="." method="_on_weapon_hit"]
 [connection signal="body_entered" from="sleep_area" to="." method="_on_sleep_area_body_entered"]
 [connection signal="body_entered" from="lute" to="." method="_on_lute_body_entered"]
+[connection signal="body_entered" from="spell_barrier" to="." method="_on_spell_barrier_body_entered"]
 [connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="ability_timer" to="." method="_on_spell_timer_timeout"]
 [connection signal="timeout" from="wind_timer" to="." method="_on_wind_timer_timeout"]

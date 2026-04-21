@@ -1,30 +1,60 @@
 [gd_scene format=3 uid="uid://bfdmoq322pdtg"]
 
 [ext_resource type="PackedScene" uid="uid://c7ef6h5q7yj7b" path="res://scenes/arena.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cjpsx2p2eecm8" path="res://scenes/ball.tscn" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cjpsx2p2eecm8" path="res://scenes/tank.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ck20gv8rmyb0d" path="res://scenes/lancelot.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c6xtlpuyxdc7q" path="res://scenes/meter.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://c1sap683xot42" path="res://assets/general/sprites/moods/mood_silly.png" id="5_tbgi4"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tbgi4"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
 [node name="main" type="Node2D" unique_id=1323391474]
 
 [node name="arena" parent="." unique_id=89609260 instance=ExtResource("1_0xm2m")]
 
 [node name="ball" parent="." unique_id=1570124733 instance=ExtResource("1_h2yge")]
-position = Vector2(394, 187)
+position = Vector2(492, 236)
 
 [node name="lancelot" parent="." unique_id=1355836444 instance=ExtResource("2_h2yge")]
-position = Vector2(203, 183)
+position = Vector2(186, 256)
 
 [node name="meter_ball1" parent="." unique_id=585711431 node_paths=PackedStringArray("ball") instance=ExtResource("4_jyhfs")]
-offset_left = 46.0
-offset_top = 459.0
-offset_right = 174.0
-offset_bottom = 499.0
+offset_left = 74.0
+offset_top = 563.0
+offset_right = 202.0
+offset_bottom = 603.0
 ball = NodePath("../lancelot")
 
+[node name="Button" type="Button" parent="meter_ball1" unique_id=903436135]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 19.0
+offset_right = 372.0
+offset_bottom = 50.0
+text = "KILL THE BARD!!!!!"
+
 [node name="meter_ball2" parent="." unique_id=198835528 node_paths=PackedStringArray("ball") instance=ExtResource("4_jyhfs")]
-offset_left = 357.0
-offset_top = 460.0
-offset_right = 485.0
-offset_bottom = 500.0
+offset_left = 514.0
+offset_top = 561.0
+offset_right = 642.0
+offset_bottom = 601.0
 ball = NodePath("../ball")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=181696086]
+position = Vector2(97, 163)
+emitting = false
+amount = 100
+texture = ExtResource("5_tbgi4")
+lifetime = 5.54
+one_shot = true
+preprocess = 2.38
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.5
+fixed_fps = 60
+visibility_rect = Rect2(-100, -100, 720, 400)
+process_material = SubResource("ParticleProcessMaterial_tbgi4")
+
+[connection signal="pressed" from="meter_ball1/Button" to="meter_ball1" method="_on_button_pressed"]

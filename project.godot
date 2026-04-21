@@ -18,12 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 manager="*uid://dulyfure228b6"
-sound_cue="*uid://du3kikai2ft3m"
 
 [display]
 
-window/size/viewport_width=540
-window/size/viewport_height=540
+window/size/viewport_width=720
+window/size/viewport_height=720
 window/stretch/mode="viewport"
 
 [layer_names]
@@ -41,3 +40,4 @@ common/physics_ticks_per_second=180
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.8039216, 0.8156863, 0.7411765, 1)

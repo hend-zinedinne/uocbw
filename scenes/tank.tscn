@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://cjpsx2p2eecm8"]
+
+[ext_resource type="Script" uid="uid://crw63nki41vi" path="res://scripts/ball.gd" id="1_n5601"]
+[ext_resource type="Texture2D" uid="uid://bqb5ov7s3c7ss" path="res://assets/characters/tank/sprites/tank-coward.png" id="2_f7cbr"]
+[ext_resource type="Texture2D" uid="uid://cygmeg25fl3fp" path="res://assets/characters/tank/sprites/tank-brave.png" id="3_4dx81"]
+[ext_resource type="Texture2D" uid="uid://dpix2fhm16t7p" path="res://assets/characters/tank/sprites/tank-hurt.png" id="4_lj6hj"]
+[ext_resource type="FontFile" uid="uid://cdgsg5g1o58vk" path="res://assets/fonts/JetBrainsMono-ExtraBold.ttf" id="5_0jqm0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yle6h"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eew57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4dx81")
+}],
+"loop": true,
+"name": &"brave",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f7cbr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_lj6hj")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4817t"]
+radius = 33.01515
+
+[sub_resource type="Animation" id="Animation_eew57"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_4dx81"]
+resource_name = "death"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:freeze")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:collision_mask")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sprites:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sprites:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.06666667, 0.1, 0.13333336, 0.19999999, 0.26666668, 0.33333334, 0.4, 0.46666667, 0.49999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(50, 0), Vector2(-45, 0), Vector2(40, 0), Vector2(-35, 0), Vector2(30, 0), Vector2(-25, 0), Vector2(20, 0), Vector2(-15, 0), Vector2(10, 0), Vector2(-5, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eew57"]
+_data = {
+&"RESET": SubResource("Animation_eew57"),
+&"death": SubResource("Animation_4dx81")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lj6hj"]
+radius = 1084.0005
+
+[node name="tank" type="RigidBody2D" unique_id=289350720 groups=["ball"]]
+collision_layer = 7
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_yle6h")
+gravity_scale = 0.0
+lock_rotation = true
+custom_integrator = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_n5601")
+
+[node name="sprites" type="AnimatedSprite2D" parent="." unique_id=1142675134]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_eew57")
+animation = &"brave"
+offset = Vector2(-0.46186066, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258352199]
+shape = SubResource("CircleShape2D_4817t")
+
+[node name="health" type="Label" parent="." unique_id=1534416671]
+offset_left = -16.0
+offset_top = 22.0
+offset_right = 18.0
+offset_bottom = 45.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_0jqm0")
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hurt_timer" type="Timer" parent="." unique_id=613483099]
+wait_time = 0.25
+one_shot = true
+
+[node name="ability_timer" type="Timer" parent="." unique_id=1198853450]
+
+[node name="Timer" type="Timer" parent="ability_timer" unique_id=1096013222]
+
+[node name="sleep_timer" type="Timer" parent="." unique_id=1791423043]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1997582963]
+libraries/ = SubResource("AnimationLibrary_eew57")
+
+[node name="enemy_check" type="Area2D" parent="." unique_id=990151843]
+light_mask = 7
+visibility_layer = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_check" unique_id=586141954]
+shape = SubResource("CircleShape2D_lj6hj")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_ball_body_entered"]
+[connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="sleep_timer" to="." method="_on_sleep_timer_timeout"]
+[connection signal="body_entered" from="enemy_check" to="." method="_on_enemy_check_body_entered"]

@@ -25,7 +25,7 @@ func _physics_process(delta):
 	rotation = 0
 	meter += delta
 
-func _integrate_forces(state):
+func _integrate_forces(_state):
 	if linear_velocity.length() > 0:
 		linear_velocity = linear_velocity.normalized() * speed
 
@@ -38,3 +38,6 @@ func _on_body_entered(body: Node) -> void:
 		health -= body.melee_damage
 		if body.has_method("take_damage"):
 			body.take_damage(melee_damage)
+		else:
+			manager.deflect.play()
+			queue_free()
