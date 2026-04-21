@@ -31,4 +31,4 @@ func _on_hitstop_timeout() -> void:
 
 func _on_hitstop_signal() -> void:
 	hitstop.start()
-	Engine.time_scale = 0
+	Engine.time_scale = 0.000001

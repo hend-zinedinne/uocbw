@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var bg_color: ColorRect = $bg_color
-@export var decay = 0.8  # How quickly the shaking stops [0, 1].
-@export var max_offset = Vector2(100, 75)  # Maximum hor/ver shake in pixels.
+@export var decay = 0.95  # How quickly the shaking stops [0, 1].
+@export var max_offset = Vector2(15, 10)  # Maximum hor/ver shake in pixels.
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 @onready var camera: Camera2D = $Camera2D
 

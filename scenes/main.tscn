@@ -13,7 +13,7 @@
 position = Vector2(394, 187)
 
 [node name="lancelot" parent="." unique_id=1355836444 instance=ExtResource("2_h2yge")]
-position = Vector2(125, 268)
+position = Vector2(203, 183)
 
 [node name="meter_ball1" parent="." unique_id=585711431 node_paths=PackedStringArray("ball") instance=ExtResource("4_jyhfs")]
 offset_left = 46.0

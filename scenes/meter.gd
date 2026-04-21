@@ -12,7 +12,8 @@ func _ready() -> void:
 	ability_meter.max_value = ball.meter_max
 
 func _process(delta: float) -> void:
-	ability_meter.value = ball.meter
-	health_number.text = str((int(health_meter.value)))
-	health_meter.value = ball.health
-	red_meter.value = lerp(red_meter.value, health_meter.value, 0.1)
+	if !ball.health <= 0:
+		ability_meter.value = ball.meter
+		health_number.text = str((int(health_meter.value)))
+		health_meter.value = ball.health
+		red_meter.value = lerp(red_meter.value, health_meter.value, 0.1)

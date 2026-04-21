@@ -27,6 +27,7 @@ var spells : Array = [
 	"barrier"
 ]
 
+var epsilon = 1e-5
 var chord = load("res://scenes/chord.tscn")
 var status = null
 var mood = manager.moods.CAUTIOUS
@@ -43,7 +44,7 @@ var max_speed := 500.0
 var default_speed := 300.0
 var speed := default_speed
 var health := 100.0
-var previous_valid_velocity : Vector2
+var previous_valid_position : Vector2
 @export var direction: Vector2 = Vector2(randi_range(-10, 10), randi_range(-10, 10))
 
 func _ready():
@@ -53,10 +54,6 @@ func _ready():
 	sleep_area.monitoring = false
 
 func _physics_process(delta):
-	if !linear_velocity.is_finite():
-		previous_valid_velocity = linear_velocity
-	else:
-		linear_velocity = previous_valid_velocity
 	speed = lerp(speed, default_speed, 0.1)
 	melee_rotation_speed = lerp(melee_rotation_speed, default_melee_speed * melee_rotation_direction, 0.1)
 	lute.rotation += melee_rotation_speed * delta
@@ -79,12 +76,9 @@ func _physics_process(delta):
 		default_speed = 300.0
 		default_melee_speed = 5.0
 
-
 func _integrate_forces(state):
 	if linear_velocity.length() > 0:
 		linear_velocity = linear_velocity.normalized() * speed
-	if linear_velocity.length() > max_speed:
-		linear_velocity = linear_velocity.normalized() * max_speed
 
 func _on_lancelot_body_entered(body: Node) -> void:
 	if body.is_in_group("wall"):
@@ -108,6 +102,8 @@ func take_damage(damage):
 		casting = false
 		take_damage(5)
 		manager.hurt.play()
+	if health <= 0:
+		queue_free()
 
 func _on_hurt_timer_timeout() -> void:
 	lancelot_sprites.play("default")
@@ -143,7 +139,7 @@ func cast_spell(spell):
 	if spell == "chords":
 		chords.play()
 		for i in range(0,3):
-			var chord_rotation = 360 / 3 * i
+			var chord_rotation = 360.0 / 3 * i
 			var chord_direction = Vector2.from_angle(chord_rotation)
 			var offset = chord_direction * 50
 			var chord_instance = chord.instantiate()
