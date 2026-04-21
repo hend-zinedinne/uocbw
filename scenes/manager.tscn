@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dulyfure228b6"]
 
 [ext_resource type="Script" uid="uid://bpoosqg5cukw8" path="res://scripts/audiomanager.gd" id="1_gq280"]
-[ext_resource type="AudioStream" uid="uid://h1eptseevt5c" path="res://en_general_hit.mp3" id="2_cphvb"]
-[ext_resource type="AudioStream" uid="uid://cvl6uh1ueg0j8" path="res://en_armadillo_shielded.mp3" id="3_o1c0c"]
-[ext_resource type="AudioStream" uid="uid://dn4q1e1efmu5e" path="res://japanese_taiko.mp3" id="4_j5tnm"]
-[ext_resource type="AudioStream" uid="uid://dg5us56j8a8eg" path="res://sfx_player_hit_ST.mp3" id="5_xiihq"]
+[ext_resource type="AudioStream" uid="uid://h1eptseevt5c" path="res://assets/general/sfx/sfx_hit.mp3" id="2_cphvb"]
+[ext_resource type="AudioStream" uid="uid://cvl6uh1ueg0j8" path="res://assets/general/sfx/sfx_deflect.mp3" id="3_o1c0c"]
+[ext_resource type="AudioStream" uid="uid://b4hqkb47wjlbi" path="res://assets/general/sfx/sfx_bounce.mp3" id="4_gq280"]
+[ext_resource type="AudioStream" uid="uid://dg5us56j8a8eg" path="res://assets/general/sfx/sfx_hurt.mp3" id="5_xiihq"]
 
 [node name="manager" type="Node2D" unique_id=1468248083]
 script = ExtResource("1_gq280")
@@ -16,7 +16,7 @@ stream = ExtResource("2_cphvb")
 stream = ExtResource("3_o1c0c")
 
 [node name="bounce" type="AudioStreamPlayer2D" parent="." unique_id=1656372897]
-stream = ExtResource("4_j5tnm")
+stream = ExtResource("4_gq280")
 
 [node name="hurt" type="AudioStreamPlayer2D" parent="." unique_id=1538654193]
 stream = ExtResource("5_xiihq")
