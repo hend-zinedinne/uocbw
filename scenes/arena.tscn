@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://c7ef6h5q7yj7b"]
+
+[ext_resource type="Script" uid="uid://cf6eojq41xis8" path="res://scripts/arena.gd" id="1_ubfh8"]
+[ext_resource type="Texture2D" uid="uid://b7c0qa4my14oj" path="res://Grid-PNG-HD-Image.png" id="2_27ga2"]
+[ext_resource type="FontFile" uid="uid://cdgsg5g1o58vk" path="res://JetBrainsMono-ExtraBold.ttf" id="2_444vf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0wof"]
+size = Vector2(761, 51)
+
+[node name="arena" type="Node2D" unique_id=89609260]
+script = ExtResource("1_ubfh8")
+
+[node name="bg_color" type="ColorRect" parent="." unique_id=1232545322]
+offset_left = 1.0
+offset_top = -20.0
+offset_right = 1152.0
+offset_bottom = 1112.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.8038848, 0.8164008, 0.7411506, 1)
+
+[node name="ColorRect" type="ColorRect" parent="bg_color" unique_id=974806922]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 62.0
+offset_right = 493.0
+offset_bottom = 357.0
+color = Color(0.56230503, 0.57, 0.5187, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg_color" unique_id=1655757872]
+position = Vector2(264.68823, 209.5625)
+scale = Vector2(0.44592127, 0.39738804)
+texture = ExtResource("2_27ga2")
+
+[node name="Label" type="Label" parent="." unique_id=79074914]
+modulate = Color(0, 0, 0, 1)
+offset_left = 177.0
+offset_top = 3.0
+offset_right = 524.0
+offset_bottom = 49.0
+pivot_offset = Vector2(1, 2)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_444vf")
+theme_override_font_sizes/font_size = 20
+text = "UOC Ball Workshop"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1223494504 groups=["wall"]]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=291191997 groups=["wall"]]
+position = Vector2(358.5, 15.5)
+shape = SubResource("RectangleShape2D_h0wof")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1860397333 groups=["wall"]]
+position = Vector2(519, 215)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_h0wof")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1481716903 groups=["wall"]]
+position = Vector2(287, 363)
+shape = SubResource("RectangleShape2D_h0wof")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=64535805 groups=["wall"]]
+position = Vector2(11, 247)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_h0wof")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1971037288]
+position = Vector2(270, 270)

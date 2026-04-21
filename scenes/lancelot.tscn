@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://ck20gv8rmyb0d"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cfp7tibmoh0ts" path="res://assets/tres/standard_ball_physics.tres" id="1_07xfr"]
+[ext_resource type="Texture2D" uid="uid://d3vr2ca0fpxb8" path="res://Sprite-0002.png" id="1_bxcof"]
+[ext_resource type="Script" uid="uid://xp8ot661fkvf" path="res://scripts/lancelot.gd" id="1_yle6h"]
+[ext_resource type="Texture2D" uid="uid://cvpaktu7h4r7t" path="res://lute.png" id="3_lpkqs"]
+[ext_resource type="FontFile" uid="uid://cdgsg5g1o58vk" path="res://JetBrainsMono-ExtraBold.ttf" id="4_lpkqs"]
+[ext_resource type="Texture2D" uid="uid://0bnvwo277b44" path="res://lancelot_hurt.png" id="5_tqqdj"]
+[ext_resource type="AudioStream" uid="uid://bj2q0ulxnjwcp" path="res://wep_spell_wind.mp3" id="7_ecexa"]
+[ext_resource type="AudioStream" uid="uid://cxnpohjuepimh" path="res://wep_spell_heal.mp3" id="8_x0b12"]
+[ext_resource type="AudioStream" uid="uid://dfsp770af54p6" path="res://wep_spell_shield.mp3" id="9_vq211"]
+[ext_resource type="AudioStream" uid="uid://c65pkcb52f6ka" path="res://wep_spell_sleep.mp3" id="10_22h5q"]
+[ext_resource type="AudioStream" uid="uid://cdr05mxwbbdea" path="res://wep_spell_bomb.mp3" id="10_ffvh2"]
+[ext_resource type="Texture2D" uid="uid://6uvn4j5irea8" path="res://sleep_aura.png" id="12_ffvh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_22h5q"]
+radius = 385.02078
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_km1lq"]
+radius = 32.01562
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gn1st"]
+radius = 15.0
+height = 56.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yitas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bxcof")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tqqdj")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ecexa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lute/lute_sprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lute/lute_sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1.005)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sleep_area/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 255)]
+}
+
+[sub_resource type="Animation" id="Animation_x0b12"]
+resource_name = "flip_weapon"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lute/lute_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(-1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lute/lute_sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jpf3a"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_22h5q"]
+resource_name = "sleep_aura"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sleep_area/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1.6817936, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq211"]
+_data = {
+&"RESET": SubResource("Animation_ecexa"),
+&"flip_weapon": SubResource("Animation_x0b12"),
+&"new_animation": SubResource("Animation_jpf3a"),
+&"sleep_aura": SubResource("Animation_22h5q")
+}
+
+[node name="lancelot" type="RigidBody2D" unique_id=497550199 groups=["ball", "lancelot"]]
+collision_layer = 7
+collision_mask = 7
+physics_material_override = ExtResource("1_07xfr")
+gravity_scale = 0.0
+custom_integrator = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_yle6h")
+
+[node name="sleep_area" type="Area2D" parent="." unique_id=1843140177]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sleep_area" unique_id=2005933936]
+shape = SubResource("CircleShape2D_22h5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="sleep_area" unique_id=989767248]
+modulate = Color(1, 1, 1, 255)
+scale = Vector2(6, 6)
+texture = ExtResource("12_ffvh2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118677750 groups=["ball"]]
+shape = SubResource("CircleShape2D_km1lq")
+
+[node name="lute" type="Area2D" parent="." unique_id=1530917075 groups=["weapon"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lute" unique_id=1232177062 groups=["weapon"]]
+position = Vector2(0, -63)
+shape = SubResource("CapsuleShape2D_gn1st")
+
+[node name="lute_sprite" type="Sprite2D" parent="lute" unique_id=1003906822]
+scale = Vector2(-1, 1.005)
+texture = ExtResource("3_lpkqs")
+offset = Vector2(0, -63)
+
+[node name="lancelot_sprites" type="AnimatedSprite2D" parent="." unique_id=546123918]
+sprite_frames = SubResource("SpriteFrames_yitas")
+animation = &"hurt"
+
+[node name="health" type="Label" parent="." unique_id=2068259626]
+offset_left = -16.0
+offset_top = 22.0
+offset_right = 23.0
+offset_bottom = 45.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_lpkqs")
+
+[node name="hurt_timer" type="Timer" parent="." unique_id=1960617534]
+wait_time = 0.25
+one_shot = true
+
+[node name="ability_timer" type="Timer" parent="." unique_id=569963403]
+wait_time = 2.5
+one_shot = true
+
+[node name="wind_timer" type="Timer" parent="." unique_id=2004685255]
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1592473461]
+libraries/ = SubResource("AnimationLibrary_vq211")
+
+[node name="spell_sfx" type="Node2D" parent="." unique_id=991220630]
+
+[node name="heal_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=1094621778]
+stream = ExtResource("8_x0b12")
+
+[node name="wind_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=1316284763]
+stream = ExtResource("7_ecexa")
+
+[node name="barrier_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=1752448288]
+stream = ExtResource("9_vq211")
+
+[node name="chords_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=612684440]
+stream = ExtResource("10_ffvh2")
+
+[node name="sleep_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=836449045]
+stream = ExtResource("10_22h5q")
+
+[connection signal="body_entered" from="." to="." method="_on_lancelot_body_entered"]
+[connection signal="weapon_hit" from="." to="." method="_on_weapon_hit"]
+[connection signal="body_entered" from="sleep_area" to="." method="_on_sleep_area_body_entered"]
+[connection signal="body_entered" from="lute" to="." method="_on_lute_body_entered"]
+[connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="ability_timer" to="." method="_on_spell_timer_timeout"]
+[connection signal="timeout" from="wind_timer" to="." method="_on_wind_timer_timeout"]

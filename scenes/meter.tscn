@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c6xtlpuyxdc7q"]
+
+[ext_resource type="Texture2D" uid="uid://cdyo8ryme1x66" path="res://meter_over.png" id="1_0gs8c"]
+[ext_resource type="Script" uid="uid://mga1bsyle6mj" path="res://scenes/meter.gd" id="1_ejre1"]
+[ext_resource type="Texture2D" uid="uid://d0qo2lue1ysyc" path="res://meter_texture.png" id="2_ejre1"]
+[ext_resource type="Texture2D" uid="uid://csok2b0shkfle" path="res://ability_meter_under.png" id="2_pm2qi"]
+[ext_resource type="Texture2D" uid="uid://dw4ejrtr8rvoh" path="res://meter_under.png" id="3_ghyc6"]
+[ext_resource type="Texture2D" uid="uid://dpi3josman5qp" path="res://ability_meter_over.png" id="3_lkhc3"]
+[ext_resource type="Texture2D" uid="uid://cmbohgisuh6i0" path="res://ability_meter_progress.png" id="4_tj5hu"]
+[ext_resource type="Texture2D" uid="uid://dovsx71exketf" path="res://meter_red.png" id="6_ghyc6"]
+
+[node name="meter" type="Control" unique_id=1110046590]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ejre1")
+
+[node name="ability_meter" type="TextureProgressBar" parent="." unique_id=2092310528]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 21.0
+offset_right = 121.0
+offset_bottom = 61.0
+max_value = 7.5
+step = 0.01
+texture_under = ExtResource("2_pm2qi")
+texture_over = ExtResource("3_lkhc3")
+texture_progress = ExtResource("4_tj5hu")
+
+[node name="red_meter" type="TextureProgressBar" parent="." unique_id=372801396]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 40.0
+step = 0.1
+texture_under = ExtResource("3_ghyc6")
+texture_progress = ExtResource("6_ghyc6")
+
+[node name="health_meter" type="TextureProgressBar" parent="." unique_id=1592418725]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+step = 0.1
+texture_over = ExtResource("1_0gs8c")
+texture_progress = ExtResource("2_ejre1")
+
+[node name="health_number" type="Label" parent="health_meter" unique_id=1334550]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 5.0
+offset_right = 60.0
+offset_bottom = 28.0

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bfdmoq322pdtg"]
+
+[ext_resource type="PackedScene" uid="uid://c7ef6h5q7yj7b" path="res://scenes/arena.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cjpsx2p2eecm8" path="res://scenes/ball.tscn" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ck20gv8rmyb0d" path="res://scenes/lancelot.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c6xtlpuyxdc7q" path="res://scenes/meter.tscn" id="4_jyhfs"]
+
+[node name="main" type="Node2D" unique_id=1323391474]
+
+[node name="arena" parent="." unique_id=89609260 instance=ExtResource("1_0xm2m")]
+
+[node name="ball" parent="." unique_id=1570124733 instance=ExtResource("1_h2yge")]
+position = Vector2(394, 187)
+
+[node name="lancelot" parent="." unique_id=1355836444 instance=ExtResource("2_h2yge")]
+position = Vector2(125, 268)
+
+[node name="meter_ball1" parent="." unique_id=585711431 node_paths=PackedStringArray("ball") instance=ExtResource("4_jyhfs")]
+offset_left = 46.0
+offset_top = 459.0
+offset_right = 174.0
+offset_bottom = 499.0
+ball = NodePath("../lancelot")
+
+[node name="meter_ball2" parent="." unique_id=198835528 node_paths=PackedStringArray("ball") instance=ExtResource("4_jyhfs")]
+offset_left = 357.0
+offset_top = 460.0
+offset_right = 485.0
+offset_bottom = 500.0
+ball = NodePath("../ball")

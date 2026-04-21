@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ocbl lancelot"
+run/main_scene="uid://bfdmoq322pdtg"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+manager="*uid://dulyfure228b6"
+sound_cue="*uid://du3kikai2ft3m"
+
+[display]
+
+window/size/viewport_width=540
+window/size/viewport_height=540
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_physics/layer_1="ball"
+2d_physics/layer_2="weapon"
+2d_physics/layer_3="wall"
+
+[physics]
+
+common/physics_ticks_per_second=180
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"

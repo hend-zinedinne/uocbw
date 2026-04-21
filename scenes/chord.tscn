@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dmca6ysrm2bs6"]
+
+[ext_resource type="Texture2D" uid="uid://cjdx6gcsq2nqw" path="res://chord-1.png" id="1_2f53a"]
+[ext_resource type="PhysicsMaterial" uid="uid://cfp7tibmoh0ts" path="res://assets/tres/standard_ball_physics.tres" id="1_rjigm"]
+[ext_resource type="Texture2D" uid="uid://b22cibj8peahh" path="res://chord-2.png" id="2_rjigm"]
+[ext_resource type="Script" uid="uid://b7xnt50ayklkp" path="res://scenes/chord.gd" id="2_xy3fl"]
+[ext_resource type="Texture2D" uid="uid://bfycsqr5aj8c2" path="res://chord-3.png" id="3_xy3fl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_og511"]
+radius = 15.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5qn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2f53a")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rjigm")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xy3fl")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="chord" type="RigidBody2D" unique_id=80614695]
+collision_layer = 7
+collision_mask = 7
+mass = 0.05
+physics_material_override = ExtResource("1_rjigm")
+gravity_scale = 0.0
+custom_integrator = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_xy3fl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=72498107 groups=["ball"]]
+shape = SubResource("CircleShape2D_og511")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1697455482]
+sprite_frames = SubResource("SpriteFrames_n5qn7")
+animation = &"3"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

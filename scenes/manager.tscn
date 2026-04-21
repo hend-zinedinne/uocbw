@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dulyfure228b6"]
+
+[ext_resource type="Script" uid="uid://bpoosqg5cukw8" path="res://scripts/audiomanager.gd" id="1_gq280"]
+[ext_resource type="AudioStream" uid="uid://h1eptseevt5c" path="res://en_general_hit.mp3" id="2_cphvb"]
+[ext_resource type="AudioStream" uid="uid://cvl6uh1ueg0j8" path="res://en_armadillo_shielded.mp3" id="3_o1c0c"]
+[ext_resource type="AudioStream" uid="uid://dn4q1e1efmu5e" path="res://japanese_taiko.mp3" id="4_j5tnm"]
+[ext_resource type="AudioStream" uid="uid://dg5us56j8a8eg" path="res://sfx_player_hit_ST.mp3" id="5_xiihq"]
+
+[node name="manager" type="Node2D" unique_id=1468248083]
+script = ExtResource("1_gq280")
+
+[node name="hit" type="AudioStreamPlayer2D" parent="." unique_id=1967451195]
+stream = ExtResource("2_cphvb")
+
+[node name="deflect" type="AudioStreamPlayer2D" parent="." unique_id=2111853423]
+stream = ExtResource("3_o1c0c")
+
+[node name="bounce" type="AudioStreamPlayer2D" parent="." unique_id=1656372897]
+stream = ExtResource("4_j5tnm")
+
+[node name="hurt" type="AudioStreamPlayer2D" parent="." unique_id=1538654193]
+stream = ExtResource("5_xiihq")
+
+[node name="hitstop" type="Timer" parent="." unique_id=1082131872]
+wait_time = 0.3
+one_shot = true
+ignore_time_scale = true
+
+[connection signal="hitstop_signal" from="." to="." method="_on_hitstop_signal"]
+[connection signal="timeout" from="hitstop" to="." method="_on_hitstop_timeout"]
