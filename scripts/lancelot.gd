@@ -94,8 +94,7 @@ func _physics_process(delta):
 		default_melee_speed = 5.0
 		lute.monitoring = true
 	for i in enemy_check.get_overlapping_bodies():
-		if i.is_in_group("ball"):
-			print(global_position.direction_to(i.global_position))
+		if i.is_in_group("ball") and i != self:
 			enemy_direction = global_position.direction_to(i.global_position)
 
 func _integrate_forces(_state):

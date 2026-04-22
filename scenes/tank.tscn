@@ -188,4 +188,3 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 [connection signal="body_entered" from="." to="." method="_on_ball_body_entered"]
 [connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="sleep_timer" to="." method="_on_sleep_timer_timeout"]
-[connection signal="body_entered" from="enemy_check" to="." method="_on_enemy_check_body_entered"]
