@@ -25,6 +25,10 @@ window/size/viewport_width=720
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
+
 [layer_names]
 
 2d_physics/layer_1="ball"

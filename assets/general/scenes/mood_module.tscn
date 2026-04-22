@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dyw20dxa78dpn"]
+
+[ext_resource type="Script" uid="uid://phry5xw5wbki" path="res://scripts/mood_module.gd" id="1_l56n0"]
+
+[node name="mood_module" type="Node2D" unique_id=1283774669]
+script = ExtResource("1_l56n0")
+
+[node name="think_timer" type="Timer" parent="." unique_id=1511021125]
+one_shot = true
+
+[node name="mood_trigger_timer" type="Timer" parent="." unique_id=24187682]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="think_timer" to="." method="_on_think_timer_timeout"]
+[connection signal="timeout" from="mood_trigger_timer" to="." method="_on_mood_trigger_timer_timeout"]

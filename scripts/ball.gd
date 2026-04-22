@@ -68,6 +68,7 @@ func _on_ball_body_entered(body: Node) -> void:
 		launch_away(body.melee_damage)
 	elif body.is_in_group("wall"):
 		manager.bounce.play()
+		speed += 100
 
 func launch_away(enemy_damage):
 	linear_velocity = (enemy_direction * clamp((enemy_damage / 10) + 1,1, INF) * -1)

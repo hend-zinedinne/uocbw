@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d3vr2ca0fpxb8" path="res://assets/characters/lancelot/sprites/lancelot-default.png" id="1_bxcof"]
 [ext_resource type="Script" uid="uid://xp8ot661fkvf" path="res://scripts/lancelot.gd" id="1_yle6h"]
 [ext_resource type="Texture2D" uid="uid://cvpaktu7h4r7t" path="res://assets/characters/lancelot/sprites/lute.png" id="3_lpkqs"]
+[ext_resource type="PackedScene" uid="uid://dyw20dxa78dpn" path="res://assets/general/scenes/mood_module.tscn" id="3_rcxil"]
 [ext_resource type="FontFile" uid="uid://cdgsg5g1o58vk" path="res://assets/fonts/JetBrainsMono-ExtraBold.ttf" id="4_lpkqs"]
 [ext_resource type="Texture2D" uid="uid://0bnvwo277b44" path="res://assets/characters/lancelot/sprites/lancelot_hurt.png" id="5_tqqdj"]
 [ext_resource type="AudioStream" uid="uid://bj2q0ulxnjwcp" path="res://assets/characters/lancelot/sfx/sfx_spell_wind.mp3" id="7_ecexa"]
@@ -19,39 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://6uvn4j5irea8" path="res://assets/characters/lancelot/sprites/sleep_aura.png" id="12_ffvh2"]
 [ext_resource type="Texture2D" uid="uid://connvcf7v0wu4" path="res://assets/general/sprites/moods/mood_sneaky.png" id="12_o2goh"]
 [ext_resource type="Texture2D" uid="uid://bmasphrs7jv6x" path="res://assets/general/sprites/moods/mood_thinker.png" id="13_ab47u"]
-[ext_resource type="Script" uid="uid://phry5xw5wbki" path="res://scripts/mood_module.gd" id="19_8y8tb"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_22h5q"]
-radius = 385.02078
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gn1st"]
-radius = 15.0
-height = 56.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_yitas"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_bxcof")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_tqqdj")
-}],
-"loop": true,
-"name": &"hurt",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_o6637"]
-radius = 49.010204
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_km1lq"]
-radius = 32.01562
 
 [sub_resource type="Animation" id="Animation_ecexa"]
 length = 0.001
@@ -166,7 +134,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("mood_bubble:modulate")
+tracks/9/path = NodePath("spell_barrier/Sprite2D:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -178,26 +146,26 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("spell_barrier/Sprite2D:modulate")
+tracks/10/path = NodePath("spell_barrier:monitoring")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("spell_barrier:monitoring")
+tracks/11/path = NodePath(".:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rcxil"]
@@ -350,7 +318,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("mood_bubble:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -392,6 +360,49 @@ tracks/1/keys = {
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vq211"]
+_data = {
+&"RESET": SubResource("Animation_ecexa"),
+&"barrier": SubResource("Animation_rcxil"),
+&"death": SubResource("Animation_ffvh2"),
+&"flip_weapon": SubResource("Animation_x0b12"),
+&"mood_trigger": SubResource("Animation_8bv5x"),
+&"new_animation": SubResource("Animation_jpf3a"),
+&"sleep_aura": SubResource("Animation_22h5q")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_22h5q"]
+radius = 385.02078
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gn1st"]
+radius = 15.0
+height = 56.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yitas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bxcof")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tqqdj")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6637"]
+radius = 49.010204
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_km1lq"]
+radius = 32.01562
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rcxil"]
 _data = {
 &"RESET": SubResource("Animation_ecexa"),
 &"barrier": SubResource("Animation_rcxil"),
@@ -468,8 +479,8 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_yle6h")
 
-[node name="mood_module" type="Node2D" parent="." unique_id=1554684708]
-script = ExtResource("19_8y8tb")
+[node name="general_anim" type="AnimationPlayer" parent="." unique_id=1592473461]
+libraries/ = SubResource("AnimationLibrary_vq211")
 
 [node name="sleep_area" type="Area2D" parent="." unique_id=1843140177]
 
@@ -500,20 +511,24 @@ animation = &"hurt"
 
 [node name="spell_barrier" type="Area2D" parent="." unique_id=128975129]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spell_barrier" unique_id=692481112]
-shape = SubResource("CircleShape2D_o6637")
+[node name="Label" type="Label" parent="spell_barrier" unique_id=1161840916]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+pivot_offset = Vector2(20, 11)
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="spell_barrier" unique_id=1468003562]
 texture = ExtResource("8_rcxil")
 
-[node name="Label" type="Label" parent="spell_barrier" unique_id=1161840916]
-offset_left = -20.0
-offset_top = 47.0
-offset_right = 20.0
-offset_bottom = 70.0
-pivot_offset = Vector2(20, 11)
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spell_barrier" unique_id=692481112]
+shape = SubResource("CircleShape2D_o6637")
+
+[node name="spell_barrier_anim" type="AnimationPlayer" parent="spell_barrier" unique_id=220243762]
+root_node = NodePath("../../general_anim")
+libraries/ = SubResource("AnimationLibrary_vq211")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118677750 groups=["ball"]]
 shape = SubResource("CircleShape2D_km1lq")
@@ -541,15 +556,6 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1592473461]
-libraries/ = SubResource("AnimationLibrary_vq211")
-
-[node name="mood_bubble" type="AnimatedSprite2D" parent="." unique_id=1801845889]
-position = Vector2(38.5, -38.5)
-scale = Vector2(0.3984375, 0.3984375)
-sprite_frames = SubResource("SpriteFrames_mj67g")
-animation = &"4"
-
 [node name="spell_sfx" type="Node2D" parent="." unique_id=991220630]
 
 [node name="heal_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=1094621778]
@@ -566,6 +572,19 @@ stream = ExtResource("10_ffvh2")
 
 [node name="sleep_spell" type="AudioStreamPlayer2D" parent="spell_sfx" unique_id=836449045]
 stream = ExtResource("10_22h5q")
+
+[node name="mood_module" parent="." unique_id=1283774669 node_paths=PackedStringArray("ball") instance=ExtResource("3_rcxil")]
+ball = NodePath("..")
+
+[node name="mood_trigger_anim" type="AnimationPlayer" parent="mood_module" unique_id=1705033020]
+root_node = NodePath("../mood_bubble")
+libraries/ = SubResource("AnimationLibrary_rcxil")
+
+[node name="mood_bubble" type="AnimatedSprite2D" parent="mood_module" unique_id=1801845889]
+position = Vector2(38.5, -38.5)
+scale = Vector2(0.3984375, 0.3984375)
+sprite_frames = SubResource("SpriteFrames_mj67g")
+animation = &"5"
 
 [node name="enemy_check" type="Area2D" parent="." unique_id=1874610252]
 light_mask = 7
